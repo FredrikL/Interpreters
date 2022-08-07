@@ -26,7 +26,7 @@ class Parser {
   }
 
   private Expr expression() {
-    return equality();
+    return assigment();
   }
 
   private Stmt declaration() {
@@ -70,6 +70,20 @@ class Parser {
     Expr value = expression();
     consume(SEMICOLON, "Expect ';' after expression.");
     return new Stmt.Expression(value);
+  }
+
+  private Expr assigment() {
+    Expr expr = equality();
+    if (match(EQUAL)) {
+      Token equals = previous();
+      Expr value = assigment();
+      if (expr instanceof Expr.Variable) {
+        Token name = ((Expr.Variable) expr).name;
+        return new Expr.Assign(name, value);
+      }
+      error(equals, "Ivanlig assigment target.");
+    }
+    return expr;
   }
 
   private Expr equality() {
