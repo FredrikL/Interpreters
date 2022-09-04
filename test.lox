@@ -24,4 +24,3 @@ var cake = Cake();
 cake.flavour = "German chocolate";
 cake.taste();
 
-print this;
