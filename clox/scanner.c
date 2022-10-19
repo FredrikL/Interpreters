@@ -265,9 +265,9 @@ Token scanToken()
   case '=':
     return makeToken(match('=') ? TOKEN_EQUAL_EQUAL : TOKEN_EQUAL);
   case '<':
-    makeToken(match('=') ? TOKEN_LESS_EQUAL : TOKEN_LESS);
+    return makeToken(match('=') ? TOKEN_LESS_EQUAL : TOKEN_LESS);
   case '>':
-    makeToken(match('=') ? TOKEN_GREATER_EQUAL : TOKEN_GREATER);
+    return makeToken(match('=') ? TOKEN_GREATER_EQUAL : TOKEN_GREATER);
   case '"':
     return string();
   }
