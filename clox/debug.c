@@ -31,7 +31,7 @@ static int simpleInstruction(const char *name, int offset)
 static int byteInstruction(const char *name, Chunk *chunk, int offset)
 {
   uint8_t slot = chunk->code[offset + 1];
-  printf("%-16s %4d", name, slot);
+  printf("%-16s %4d\n", name, slot);
   return offset + 2;
 }
 
@@ -123,7 +123,7 @@ int disassembleInstruction(Chunk *chunk, int offset)
     {
       int isLocal = chunk->code[offset++];
       int index = chunk->code[offset++];
-      printf("%04d    |                    %s %d\n", offset - 2, isLocal ? "local" : "upvalue", index);
+      printf("%04d    |                     %s %d\n", offset - 2, isLocal ? "local" : "upvalue", index);
     }
     return offset;
   }

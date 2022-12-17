@@ -340,7 +340,7 @@ static int resolveUpvalue(Compiler *compiler, Token *name)
   int upvalue = resolveUpvalue(compiler->enclosing, name);
   if (upvalue != -1)
   {
-    return addUpvalue(compile, (uint8_t)upvalue, false);
+    return addUpvalue(compiler, (uint8_t)upvalue, false);
   }
 
   return -1;
@@ -514,7 +514,7 @@ static void namedVariable(Token name, bool canAssign)
     getOp = OP_GET_LOCAL;
     setOp = OP_SET_LOCAL;
   }
-  else if ((arg == resolveUpvalue(current, &name)) != -1)
+  else if ((arg = resolveUpvalue(current, &name)) != -1)
   {
     getOp = OP_GET_UPVALUE;
     setOp = OP_SET_UPVALUE;
