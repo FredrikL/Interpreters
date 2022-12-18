@@ -69,6 +69,8 @@ int main(int argc, const char *argv[])
 {
   initVM();
 
+  // runFile("test.lox");
+
   if (argc == 1)
   {
     repl();
